@@ -1,0 +1,48 @@
+import tkinter as tk
+
+def check_cattle():
+    if not temp_entry.get() or not heartbeat_entry.get() or not milk_entry.get():
+        result_label.config(text="Please enter temperature, heartbeat, and milk production", fg="red")
+    else:
+        temp = float(temp_entry.get())
+        heartbeat = int(heartbeat_entry.get())
+        milk = float(milk_entry.get())
+        if temp < 37.5 or temp > 39.5 or heartbeat < 48 or heartbeat > 84 or milk < 5:
+            result_label.config(text="Cattle is ill", fg="red")
+        else:
+            result_label.config(text="Cattle is not ill", fg="green")
+
+# Create a new window
+window = tk.Tk()
+window.title("Cattle Health Checker")
+window.geometry("400x250")
+window.configure(bg='#f5f5f5')
+
+# Create temperature label and entry field
+temp_label = tk.Label(window, text="Temperature (°C):", font=('Arial', 12), bg='#f5f5f5')
+temp_label.place(x=30, y=30)
+temp_entry = tk.Entry(window, font=('Arial', 12), width=10)
+temp_entry.place(x=180, y=30)
+
+# Create heartbeat label and entry field
+heartbeat_label = tk.Label(window, text="Heartbeat (beats/min):", font=('Arial', 12), bg='#f5f5f5')
+heartbeat_label.place(x=30, y=70)
+heartbeat_entry = tk.Entry(window, font=('Arial', 12), width=10)
+heartbeat_entry.place(x=180, y=70)
+
+# Create milk production label and entry field
+milk_label = tk.Label(window, text="Milk Production (liters):", font=('Arial', 12), bg='#f5f5f5')
+milk_label.place(x=30, y=110)
+milk_entry = tk.Entry(window, font=('Arial', 12), width=10)
+milk_entry.place(x=220, y=110)
+
+# Create check button
+check_button = tk.Button(window, text="Check", font=('Arial', 12), command=check_cattle, bg='#008000', fg='white')
+check_button.place(x=180, y=160)
+
+# Create result label
+result_label = tk.Label(window, text="", font=('Arial', 14, 'bold'), bg='#f5f5f5')
+result_label.place(x=30, y=210)
+
+# Start the main event loop
+window.mainloop()
